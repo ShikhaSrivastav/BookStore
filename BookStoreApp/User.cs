@@ -11,10 +11,10 @@ public class User{
         User u=(User)obj;
         return this.Email.Equals(u.Email) && this.Password.Equals(u.Password);
     }
-    public override string ToString()
-    {
-        string str= Console.WriteLine("{0},{1}",Email,Name);
-        return str;
-    }
+    // public override string ToString()
+    // {
+    //     string str= Console.WriteLine("{0},{1}",Email,Name);
+    //     return str;
+    // }
 
 }
