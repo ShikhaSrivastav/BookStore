@@ -1,6 +1,6 @@
 namespace BookStoreApp.Services.BookServices;
 
-public interface BookService{
+public class BookService:IBookService{
     public static List<Book> books = new List<Book> {new Book
         {
             ID=2,
@@ -16,26 +16,26 @@ public interface BookService{
            };
            
     
-    public ActionResult<List<Book>> GetAllBooks()
+    public List<Book> GetAllBooks()
     {
-        return Ok(books);
+        return books;
     }
-        public ActionResult<Book>? GetBook(int id)
+        public Book? GetBook(int id)
     {
         var book = books.Find(x => x.ID == id);
         if(book is null){
             return null;
         }
 
-        return Ok(book);
+        return book;
     }
    
-    public ActionResult<List<Book>> AddBook(Book book){
+    public List<Book> AddBook(Book book){
         books.Add(book);
-        return Ok(books);
+        return books;
     }
    
-    public ActionResult<Book>? UpdateBook(Book book){
+    public Book? UpdateBook(Book book){
         var newbook = books.Find(x => x.ID == book.ID);
         if(newbook is null){
             return null;
@@ -43,13 +43,13 @@ public interface BookService{
         newbook.Name=book.Name;
         newbook.Author=book.Author;
         newbook.YOR=book.YOR;
-        return Ok(newbook);
+        return newbook;
 
     }
        
-    public ActionResult<Book> DeleteBook(int id){
+    public Book DeleteBook(int id){
         var book = books.Find(x => x.ID == id);
         books.Remove(book);
-        return Ok(book);    
+        return book;    
     }
 }

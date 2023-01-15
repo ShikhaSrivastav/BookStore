@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using BookStoreApp.Services.BookServices;
+
 
 using BookStoreApp.Models;
 namespace BookStoreApp.Controllers;
@@ -8,9 +10,9 @@ namespace BookStoreApp.Controllers;
 public class BookController : ControllerBase
 {
 
-    private readonly IBookService<BookController> _BookService;
+    private readonly IBookService _BookService;
 
-    public BookController(IBookService<BookController> BookService)
+    public BookController(IBookService BookService)
     {
         _BookService = BookService;
     }
@@ -25,14 +27,14 @@ public class BookController : ControllerBase
     [Route("{id}")]
     public ActionResult<Book> GetBook(int id)
     {
-        var result=_BookService.GetAllBooks(id);
+        var result=_BookService.GetBook(id);
         return Ok(result);
     }
     [HttpPost]
     [Route("[action]")]
     public ActionResult<List<Book>> AddBook(Book book){
        var result=_BookService.AddBook(book);
-        return Ok(books);
+        return Ok(result);
     }
     [HttpPut]
     [Route("[action]")]
