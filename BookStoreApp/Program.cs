@@ -1,5 +1,7 @@
 global using BookStoreApp.Models;
 using BookStoreApp.Services.BookServices;
+using BookStoreApp.Data.DataContext;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IBookService,BookService>();
 builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddDbContext<DataContext>();
+// builder.Services.AddDbContext<DataContextBook>();
+
 
 
 
